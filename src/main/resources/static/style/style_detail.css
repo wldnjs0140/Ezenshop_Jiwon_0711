@@ -1,5 +1,27 @@
 @charset "UTF-8";
-@charset "UTF-8";
+
+
+/* 상세이미지 작업 시작 - 지원 */
+.preFirst{
+	font-size: 16px;
+	font-weight: bold;
+}
+div#goods-img img{
+	height: 754px;
+}
+p.goodsDetailImg{
+	margin-top: 20px;
+	width: 1000px;
+	margin: 0 auto;	
+}
+p.goodsDetailImg img{
+	width: 1000px;
+}
+div#mGnbMenu {
+	margin-bottom: 50px;
+}	
+
+/* 상세이미지 작업 끝 - 지원 */
 
 /* main영역 시작  */
 .goods-thumb-area{

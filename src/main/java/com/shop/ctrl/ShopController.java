@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.oreilly.servlet.MultipartRequest;
 import com.shop.dao.GoodsRegDao;
 import com.shop.svc.GoodsRegSvc;
 import com.shop.svc.ReviewSvc;
@@ -48,7 +47,9 @@ public class ShopController {
 		// 리뷰리스트 출력
 		model.addAttribute("reviewList", reviewSvc.reviewList(goodsCode));
 		model.addAttribute("imgList", reviewSvc.callImg(goodsCode));
-
+		
+		// 상품 상세이미지 출력 - 지원
+		model.addAttribute("goodsDetailImg", reviewSvc.goodsDetailImg(goodsCode));
 		return "shop/productDetail";
 	}
 
@@ -66,7 +67,7 @@ public class ShopController {
 		System.out.println(goodsCode);
 		model.addAttribute("unameSession", ses.getAttribute("unameSession"));
 		model.addAttribute("goodsList", goodsRegSvc.goodsModList(goodsCode));
-
+		
 		return "/shop/productReviewReg";
 
 	}

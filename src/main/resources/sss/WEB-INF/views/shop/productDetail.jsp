@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -20,31 +20,33 @@
 
 			<%@ include file="/WEB-INF/views/inc/headerGNB_admin.jsp"%>
 			<%@ include file="/WEB-INF/views/inc/sitemap.jsp"%>
-<main id="main">
+			<main id="main">
 				<div class="goods-thumb-area">
 					<div id="goods-thumb" class="dFlex">
-						<c:set var="goodsCode" value="${productDetail.goodsCode}"/>
-						<c:set var="num" value="${productDetail.num}"/>
-						
+						<c:set var="goodsCode" value="${productDetail.goodsCode}" />
+						<c:set var="num" value="${productDetail.num}" />
+
 						<div id="goods-img">
-							<img src="/uploadDir/${productDetail.filename}" alt="이미지0"> <span class="msg"></span>
+							<img src="/uploadDir/${productDetail.filename}" alt="이미지0">
+							<span class="msg"></span>
 						</div>
 						<!-- goods_img -->
 						<div id="goodsOrder">
-			
-						<h3 class="title">${productDetail.goodsName}
-						<br>
-						<font class="size" style="font-size: 11px;color: #595959;">M~2XL(95~115)</font>
-						</h3>
-						<pre class="preFirst">
-						${productDetail.goodsTXT}
-					</pre>
+
+							<h3 class="title">${productDetail.goodsName}
+								<br> <font class="size"
+									style="font-size: 11px; color: #595959;">M~2XL(95~115)</font>
+							</h3>
+<pre class="preFirst">
+${productDetail.goodsTXT}
+</pre>
 
 							<div id="orderArea">
 								<table>
 									<tr>
 										<td>소비자가</td>
-													<fmt:formatNumber var="productDetail" value="${productDetail.goodsPrice}" pattern="#,###" />
+										<fmt:formatNumber var="productDetail"
+											value="${productDetail.goodsPrice}" pattern="#,###" />
 										<td>${productDetail}원</td>
 									</tr>
 									<tr>
@@ -81,13 +83,13 @@
 								<hr>
 								<div id="btnArea">
 									<span>총 상품 금액</span> <span>원</span> <br>
-	
+
 									<button class="fBtn">구매하기</button>
 									<button class="scBtn">장바구니</button>
 									<button class="scBtn">관련상품</button>
 								</div>
 								<!-- btnArea -->
-	
+
 							</div>
 							<!-- orderArea -->
 						</div>
@@ -96,28 +98,37 @@
 					<!-- .goods-thumb -->
 				</div>
 				<!-- goods-thumb-info -->
+				<div id="mGnbMenu">
+					<span><a href="#">코디상품</a></span> <span><a href="#">상세정보</a></span>
+					<span><a href="#">가이드</a></span> <span><a href="#">상품리뷰</a></span>
+					<span><a href="#">Q&amp;A</a></span>
+				</div>
+				<!-- mGnbMenu 위치 수정! - 지원 -->
 			</main>
 			<!-- main#main -->
+			<!-- 리뷰사진 출력 시작 - 지원 -->
+			<c:forEach var="goodsDetailImg" items="${goodsDetailImg}">
+				<p class="goodsDetailImg"><img src="/uploadDir/${goodsDetailImg.imgName}" alt=""></p>
+			</c:forEach>
+			
+			
+			
+			<!-- 리뷰사진 출력 끝 - 지원 -->
 
-			<div id="mGnbMenu">
-				<span><a href="#">코디상품</a></span> <span><a href="#">상세정보</a></span>
-				<span><a href="#">가이드</a></span> <span><a href="#">상품리뷰</a></span> <span><a
-					href="#">Q&amp;A</a></span>
-			</div>
-
-		</div>
-		
-			<%@ include file="/WEB-INF/views/shop/productReview.jsp" %>
-
-	
-
-			<div id="qnaArea">
-				<span>Q&A</span>
-
-			</div>
 
 		</div>
-		<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
+
+		<%@ include file="/WEB-INF/views/shop/productReview.jsp"%>
+
+
+
+		<div id="qnaArea">
+			<span>Q&amp;A</span>
+
+		</div>
+
+	</div>
+	<%@ include file="/WEB-INF/views/inc/footer.jsp"%>
 
 
 	<script
