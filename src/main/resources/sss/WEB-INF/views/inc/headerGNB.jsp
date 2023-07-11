@@ -22,7 +22,7 @@
 					<li class="slideCommu">
 						COMMUNITY
 						<ul class="commuUl">
-							<li><a href="/qna">Q&A</a></li>
+							<li><a href="/qna">Q&amp;A</a></li>
 							<li>FAQ</li>
 							<li>공지사항</li>
 							<li>포토리뷰</li>

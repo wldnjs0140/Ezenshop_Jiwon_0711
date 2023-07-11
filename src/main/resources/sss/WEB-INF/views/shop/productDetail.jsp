@@ -7,7 +7,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Document</title>
+<title>Ezenshop_Jiwon_0711</title>
 <link rel="stylesheet" href="/style/style.css">
 <link rel="stylesheet" href="/style/style_detail.css">
 

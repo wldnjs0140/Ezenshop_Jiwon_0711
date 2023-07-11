@@ -8,8 +8,10 @@ import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shop.dao.GoodsRegDao;
 import com.shop.svc.GoodsRegSvc;
 import com.shop.svc.GoodsStockSvc;
 import com.shop.util.PagingVO;
@@ -23,9 +25,23 @@ public class ProductController {
 
 	@Autowired
 	GoodsStockSvc goodsStockSvc;
+	
+	@Autowired
+	GoodsRegDao goodsRegDao;
 
 	@Autowired
 	TransactionTemplate tranTemplate;
+
+	@RequestMapping("/main")
+	public String root(@SessionAttribute(name = "unameSession", required = false) String unameSession, Model model) {
+
+		model.addAttribute("unameSession", unameSession);
+
+		// 메인페이지 등록된 정보 불러오기
+		model.addAttribute("goodsInfo", goodsRegDao.goodsRegList());
+
+		return "index";
+	}
 
 	// 재고 리스트 페이지
 	@RequestMapping("/goodsRegList")
@@ -233,7 +249,7 @@ public class ProductController {
 			throws Exception {
 
 		goodsRegSvc.goodsDetailRegProc(files, req);
-		return "index";
+		return "redirect:/main";
 	}
 
 }

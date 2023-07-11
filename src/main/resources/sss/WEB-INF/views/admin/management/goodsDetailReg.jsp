@@ -93,10 +93,10 @@
 			
 					
 				<div class="addImage-container">
-					<input type="file" style="display: block;" name="files" 
-					id="adImgs" class="files" form="form1" required multiple="multiple">
+					<input type="file" style="display: block;" name="files"  required="required"
+					id="adImgs" class="files adImgs" form="form1" multiple="multiple">
 				</div>
-				
+				<button id="addButton">+</button>
 			</div>
 			
 			

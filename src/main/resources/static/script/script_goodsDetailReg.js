@@ -23,7 +23,7 @@ inputImage.addEventListener("change", e => {
     readImage(e.target)
 });
 
-/*
+
 
 $(document).ready(function() {
   var removeButtonCreated = false;
@@ -33,7 +33,7 @@ $(document).ready(function() {
     var clonedInput = existingInput.clone();
    	
     var timestamp = Date.now(); // 현재 시간을 밀리초 단위로 가져옵니다.
-    var newName = 'files' + timestamp; // 새로운 이름을 생성합니다.
+  	var newName = 'files' + timestamp; // 새로운 이름을 생성합니다.
     clonedInput.attr('name');
     existingInput.parent().append(clonedInput);
 
@@ -49,18 +49,73 @@ $(document).ready(function() {
     if (additionalInputs.length > 0) {
       additionalInputs.last().remove();
     }
-    if (additionalInputs.length === 1) {
+    if (additionalInputs.length <= 1) {
+      $('#removeButton').remove();
+      removeButtonCreated = false;
+    }
+  });
+});
+
+/*
+$(document).ready(function() {
+  var removeButtonCreated = false;
+  var inputIndex = 1;
+
+  $('#addButton').click(function() {
+    var existingInput = $('input.files').eq(inputIndex - 1);
+    var clonedInput = existingInput.clone();
+    var newName = 'files' + inputIndex;
+
+    clonedInput.attr('name', newName);
+    existingInput.parent().append(clonedInput);
+
+    inputIndex++;
+
+    if (!removeButtonCreated) {
+      $('#addButton').after('<button id="removeButton">-</button>');
+      removeButtonCreated = true;
+    }
+  });
+
+  $(document).on('click', '#removeButton', function() {
+    var additionalInputs = $('input[name^="files"]');
+    if (additionalInputs.length > 1) {
+      additionalInputs.last().remove();
+      inputIndex--;
+    }
+    if (additionalInputs.length === 2) {
       $('#removeButton').remove();
       removeButtonCreated = false;
     }
   });
 });
 */
+
+
+
 $(function(){
 	
 	$("button.fBtn").click(function(){
 		// let goodsCode = $("input.goodsCode").val();
 		// console.log(goodsCode);
+		// var fileName = $("input[name=files]").prop("files")[0].name;
+		 
+		 /*var files = $(".adImgs").prop("files");
+   		 var fileNames = [];
+    
+    	for (var i = 0; i < files.length; i++) {
+      		fileNames.push(files[i].name);
+   		 }
+		
+		 var files = [];
+	    var fileInputs = $('input[name="myFiles"]');
+	    for (var i = 0; i < fileInputs.length; i++) {
+	      var fileInput = fileInputs[i];
+	      for (var j = 0; j < fileInput.files.length; j++) {
+	        files.push(fileInput.files[j].name);
+	      }
+		alert("adImgs : " + fileNames.join(", "));
+		*/
 		$("form#form1").attr("action","/goodsDetailRegProc");
 		$("form#form1").submit();
 	});

@@ -42,7 +42,7 @@
 				
 					
 					
-						<div class="viewListTbl dFlex"">
+						<div class="viewListTbl dFlex">
 						
 								
 					<%-- 		<span>${userView.num}</span> --%>

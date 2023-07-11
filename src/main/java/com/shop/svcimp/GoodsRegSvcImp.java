@@ -109,6 +109,7 @@ public class GoodsRegSvcImp implements GoodsRegSvc {
 			if (i == 0) {
 				try {
 					goodsRegDao.goodsDetailRegProc(map);
+					System.out.println("fimeName : "+fileName);
 					System.out.println("상품 상세정보 입력 성공!");
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
@@ -118,6 +119,7 @@ public class GoodsRegSvcImp implements GoodsRegSvc {
 				try {
 					goodsRegDao.addDetailImg(map2);
 					System.out.println("추가사진 업로드 성공!");
+					System.out.println("fimeName : "+fileName);
 				} catch (Exception e) {
 					System.out.println("추가사진 업로드 오류!");
 					System.out.println(e.getMessage());
