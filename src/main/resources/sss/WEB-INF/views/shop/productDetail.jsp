@@ -13,7 +13,7 @@
 
 </head>
 <body>
-
+	<input type="hidden" value="${productDetail.filename}" name="filename" form="">
 	<div id="wrap">
 
 		<div id="innerWrap">

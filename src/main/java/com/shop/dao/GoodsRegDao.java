@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.shop.dto.GoodsRegDto;
+import com.shop.dto.orderDto;
 
 @Mapper
 public interface GoodsRegDao {
@@ -17,6 +18,10 @@ public interface GoodsRegDao {
 	// 재고목록1
 	@Select("select * from goods order by num desc")
 	public List<GoodsRegDto> goodsRegList();
+
+	// 재고검색
+	@Select("select * from goods where ${param1} like CONCAT('%',#{param2},'%')")
+	public List<GoodsRegDto> goodsRegSrc(String keyWord, String goodsCode);
 
 	// 재고등록
 	@Insert("insert into goods (goodsCode,goodsName,goodsCategory,goodsPrice,goodsDiscount) "
@@ -30,10 +35,6 @@ public interface GoodsRegDao {
 	// 재고삭제
 	@Delete("delete from goods where goodsCode=#{param1}")
 	public int goodsDel(String delCode);
-
-	// 재고검색
-	@Select("select * from goods where ${param1} like CONCAT('%',#{param2},'%')")
-	public List<GoodsRegDto> goodsRegSrc(String keyWord, String goodsCode);
 
 	// 재고 상세보기
 	@Select("select * from goods where goodsCode=#{param1}")
@@ -62,5 +63,18 @@ public interface GoodsRegDao {
 	@Insert("insert into goodsDetailImg(goodsCode, imgName, oriFilename, filesize) values "
 			+ "(#{goodsCode}, #{imgName}, #{oriFilename}, #{filesize})")
 	public void addDetailImg(Map<String, Object> map) throws Exception;
+
+	// 전체 주문수 -지원
+	@Select("select count(*) from orderProc")
+	public int orderTotalCnt();
+
+	// 재고목록1
+	@Select("select * from orderProc order by num desc")
+	public List<orderDto> orderList();
+
+	// 재고검색
+	@Select("select * from orderProc where ${param1} like CONCAT('%',#{param2},'%')")
+	public List<orderDto> orderListSrc(String keyField, String keyWord);
+
 
 }

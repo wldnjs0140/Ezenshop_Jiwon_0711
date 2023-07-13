@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dao.GoodsRegDao;
 import com.shop.dto.GoodsRegDto;
+import com.shop.dto.orderDto;
 import com.shop.svc.GoodsRegSvc;
 
 @Service
@@ -60,6 +61,24 @@ public class GoodsRegSvcImp implements GoodsRegSvc {
 	public int goodsTotalCnt() {
 		return goodsRegDao.goodsTotalCnt();
 	}
+	
+	// 전체 주문수 -지원
+	@Override
+	public int orderTotalCnt() {
+		return goodsRegDao.orderTotalCnt();
+	}
+	
+	// 전체 주문목록 조회 - 지원
+	@Override
+	public List<orderDto> orderList() {
+		return goodsRegDao.orderList();
+	}
+	// 전체 주문목록 중 검색 - 지원
+	@Override
+	public List<orderDto> orderListSrc(String keyField, String keyWord) {
+		return goodsRegDao.orderListSrc(keyField, keyWord);
+	}
+	
 
 	// 상품 상세 정보 불러오기- 지원
 	@Override

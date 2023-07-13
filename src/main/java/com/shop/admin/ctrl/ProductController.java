@@ -78,6 +78,8 @@ public class ProductController {
 
 		return "admin/management/productList";
 	}
+	
+	
 
 	// 재고 상세 보기 페이지
 	@RequestMapping("/goodsRegMod")
@@ -93,6 +95,44 @@ public class ProductController {
 
 		return "admin/management/productMod";
 	}
+	
+	// 관리자용 상품 주문 전체목록 보기 - 지원 
+		@RequestMapping("/adminOrderList")
+		public String adminOrderList(HttpServletRequest req, Model model, PagingVO vo,
+				@RequestParam(value = "nowPage", required = false) String nowPage,
+				@RequestParam(value = "cntPerPage", required = false) String cntPerPage) {
+			
+			int total = goodsRegSvc.orderTotalCnt();
+			if (nowPage == null && cntPerPage == null) {
+				nowPage = "1";
+				cntPerPage = "5";
+			} else if (nowPage == null) {
+				nowPage = "1";
+			} else if (cntPerPage == null) {
+				cntPerPage = "5";
+			}
+			vo = new PagingVO(total, Integer.parseInt(nowPage), Integer.parseInt(cntPerPage));
+			model.addAttribute("paging", vo);
+
+			model.addAttribute("goodsTotal", goodsRegSvc.orderTotalCnt());
+			
+			String keyFiled = req.getParameter("keyFiled");
+			String keyWord = req.getParameter("keyWord");
+
+			if (keyWord == null || keyWord == "") {
+				model.addAttribute("goodsRegList", goodsRegSvc.orderList());
+			} else {
+				model.addAttribute("goodsRegList", goodsRegSvc.orderListSrc(keyFiled,keyWord));
+			}
+
+			model.addAttribute("goodsCateList", goodsStockSvc.goodsCateList());
+			model.addAttribute("goodsColorList", goodsStockSvc.goodsColorList());
+			model.addAttribute("goodsSizeList", goodsStockSvc.goodsSizeList());
+
+			
+			
+			return "admin/management/adminOrderList";
+		}
 
 	// 재고 등록페이지
 	@RequestMapping("/goodsReg")
